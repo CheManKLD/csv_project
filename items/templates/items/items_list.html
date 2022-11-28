@@ -1,0 +1,79 @@
+{% extends 'items/base.html' %}
+
+{% block content %}
+
+<h1>{{ title }}</h1>
+
+{% if items %}
+    <div class="items_table">
+        <table id="items">
+            <thead>
+                <tr>
+                    {% for header_name in headers_of_table %}
+                    <th>{{ header_name }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>{{ item.article }}</td>
+                        <td>{{ item.name }}</td>
+
+                        {% for category in item.get_all_category_values %}
+                        {% if category %}
+                            <td>{{ category }}</td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                        {% endfor %}
+
+                        {% for price in item.get_all_prices %}
+                        {% if price %}
+                            <td>{{ price }}</td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                        {% endfor %}
+
+                        <td>{{ item.get_quantity_as_integer_or_with_remainder }}</td>
+                        <td>{{ item.property_fields }}</td>
+                        <td>{{ item.joint_purchase }}</td>
+                        <td>{{ item.unit_of_measurement }}</td>
+                        <td>{{ item.image }}</td>
+                        <td>{{ item.get_integer_from_is_on_the_main_page_field }}</td>
+                        <td>{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% if page_obj.has_other_pages %}
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+    {% endif %}
+{% else %}
+    <h2>Список пуст</h2>
+{% endif %}
+
+<p>
+    <a href="{% url 'main' %}">Вернуться на главную</a>
+</p>
+
+{% endblock %}

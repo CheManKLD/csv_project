@@ -1,0 +1,7 @@
+#items {
+    width: 100%;
+}
+
+#items th, #items td {
+    border: 1px solid;
+}

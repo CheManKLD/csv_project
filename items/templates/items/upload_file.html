@@ -1,0 +1,18 @@
+{% extends 'items/base.html' %}
+
+{% block content %}
+
+<h1>Добавление товаров в формате CSV файла</h1>
+
+<form action="{% url 'upload_file' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p>{{ message }}</p>
+
+    {{ form.as_p }}
+
+    <p><button type="submit">Отправить</button></p>
+</form>
+
+<a href="{% url 'main' %}">Вернуться на главную</a>
+
+{% endblock %}

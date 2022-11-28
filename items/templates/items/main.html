@@ -1,0 +1,17 @@
+{% extends 'items/base.html' %}
+
+{% block content %}
+
+<h1>Товары</h1>
+
+<ul>
+    <li>
+        <a href="{% url 'upload_file' %}">Загрузить CSV файл товаров</a>
+    </li>
+    <br>
+    <li>
+        <a href="{% url 'items_list' %}">Список товаров</a>
+    </li>
+</ul>
+
+{% endblock %}
