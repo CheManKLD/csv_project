@@ -34,9 +34,11 @@ DATABASE_URL=psql://clients_user:password@localhost:5432/clients_db
 
 
 ### Доступные VIEW:
-`https://chemanwebapp.pythonanywhere.com/` - Главная страница.
+1. Главная страница.
 
-`https://chemanwebapp.pythonanywhere.com/uploadcsv` - Загрузка CSV файла для парсинга и записи данных о товарах 
+2. `/uploadcsv` - Загрузка CSV файла для парсинга и записи данных о товарах 
 в базу данных.
 
-`https://chemanwebapp.pythonanywhere.com/items` - Список всех загруженных товаров с пагинацией.
+3. `/items` - Список всех загруженных товаров с пагинацией.
+
+Также данное приложение загрузил на хост: https://chemanwebapp.pythonanywhere.com
