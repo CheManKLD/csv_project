@@ -1,8 +1,9 @@
+from django.core.validators import MinLengthValidator
 from django.db import models
 
 
 class CategoryOne(models.Model):
-    name = models.CharField(max_length=255, blank=False, unique=True)
+    name = models.CharField(max_length=255, validators=[MinLengthValidator(1)], unique=True)
 
     def __str__(self):
         return self.name
@@ -12,7 +13,7 @@ class CategoryOne(models.Model):
 
 
 class CategoryTwo(models.Model):
-    name = models.CharField(max_length=255, blank=False, unique=True)
+    name = models.CharField(max_length=255, validators=[MinLengthValidator(1)], unique=True)
     parent_category = models.ForeignKey(CategoryOne, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -23,7 +24,7 @@ class CategoryTwo(models.Model):
 
 
 class CategoryThree(models.Model):
-    name = models.CharField(max_length=255, blank=False, unique=True)
+    name = models.CharField(max_length=255, validators=[MinLengthValidator(1)], unique=True)
     parent_category = models.ForeignKey(CategoryTwo, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -34,7 +35,7 @@ class CategoryThree(models.Model):
 
 
 class UnitOfMeasurement(models.Model):
-    name = models.CharField(max_length=10, blank=False, unique=True)
+    name = models.CharField(max_length=10, validators=[MinLengthValidator(1)], unique=True)
 
     def __str__(self):
         return self.name
@@ -44,8 +45,8 @@ class UnitOfMeasurement(models.Model):
 
 
 class Item(models.Model):
-    article = models.CharField(max_length=255, blank=False, unique=True)
-    name = models.CharField(max_length=255, blank=False)
+    article = models.CharField(max_length=255, validators=[MinLengthValidator(1)], unique=True)
+    name = models.CharField(max_length=255, validators=[MinLengthValidator(1)])
     category_1 = models.ForeignKey(CategoryOne, on_delete=models.SET_NULL, blank=True, null=True)
     category_2 = models.ForeignKey(CategoryTwo, on_delete=models.SET_NULL, blank=True, null=True)
     category_3 = models.ForeignKey(CategoryThree, on_delete=models.SET_NULL, blank=True, null=True)
