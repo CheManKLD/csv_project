@@ -39,7 +39,7 @@ def upload_csv_file(request):
             decoded_file = csv_file.read().decode('utf-8')
             io_string = io.StringIO(decoded_file)
             parse_csv_file_of_items(io_string)
-            message = 'Файл успешно обработан'
+            message = f'Файл "{str(csv_file)}" успешно обработан'
     else:
         form = UploadCSVFileForm()
 
@@ -49,7 +49,8 @@ def upload_csv_file(request):
 
 class ItemsListView(ListView):
     paginate_by = 30
-    model = Item
+    queryset = Item.objects.select_related('category_1', 'category_2',
+                                           'category_3', 'unit_of_measurement')
     template_name = 'items/items_list.html'
     context_object_name = 'items'
 

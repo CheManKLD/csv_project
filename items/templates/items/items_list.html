@@ -4,6 +4,10 @@
 
 <h1>{{ title }}</h1>
 
+<p>
+    <a href="{% url 'main' %}">Вернуться на главную</a>
+</p>
+
 {% if items %}
     <div class="items_table">
         <table id="items">
@@ -68,12 +72,11 @@
         </span>
     </div>
     {% endif %}
+    <p>
+        <a href="{% url 'main' %}">Вернуться на главную</a>
+    </p>
 {% else %}
     <h2>Список пуст</h2>
 {% endif %}
-
-<p>
-    <a href="{% url 'main' %}">Вернуться на главную</a>
-</p>
 
 {% endblock %}

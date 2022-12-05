@@ -22,11 +22,9 @@ table_header_indexes_dict = {
 
 
 def parse_csv_file_of_items(file) -> None:
-    first_header_name = 'Код'
     reader = csv.reader(file, delimiter=';')
+    next(reader)  # Пропускает строку с заголовками таблицы
     for row in reader:
-        if row[table_header_indexes_dict['article']] == first_header_name:
-            continue
         create_or_update_item(row)
 
 
